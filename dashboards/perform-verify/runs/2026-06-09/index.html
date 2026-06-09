@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perform Verify — Run 2026-06-09</title>
+<link rel="stylesheet" href="../../../../assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span class="name">SHOT <span>Clubhouse</span></span></div>
+    <div class="crumbs">
+      <a href="../../../../index.html">Home</a><span class="sep">/</span>
+      <a href="../../../index.html">Dashboards</a><span class="sep">/</span>
+      <a href="../../index.html">Perform Verify</a><span class="sep">/</span>
+      <span class="here">Run 2026-06-09</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero" style="padding-bottom:8px">
+    <div class="eyebrow">Exploratory Test Run · Snapshot</div>
+    <h1>Perform Verify <span class="accent">— Run 2026-06-09</span></h1>
+    <div class="meta-grid">
+      <span><b>Run ID:</b> perfqa-2026-06-08</span>
+      <span><b>Environment:</b> perform-dev (amkqtcxniaikulvfashn)</span>
+      <span><b>Branch:</b> f/perform-test-run-2</span>
+      <span><b>Completed:</b> 2026-06-09 08:26 UTC</span>
+      <span><b>Mission:</b> Perform exploratory test — GREEN everything</span>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:18px">
+    <div class="headline">
+      <div class="big"><span class="tick">🟢</span> ALL GREEN</div>
+      <div class="statline">
+        <div class="stat"><div class="v teal">557</div><div class="l">Green features</div></div>
+        <div class="stat"><div class="v muted">13</div><div class="l">Areas</div></div>
+        <div class="stat"><div class="v muted">0</div><div class="l">Pending</div></div>
+        <div class="stat"><div class="v muted">0</div><div class="l">Blocked</div></div>
+        <div class="stat"><div class="v muted">0</div><div class="l">Defects</div></div>
+        <div class="stat"><div class="v muted">0</div><div class="l">Open beads</div></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Per-area results</h2>
+    <p class="section-sub">13 areas · 557 features · every feature verified green. Counts pulled directly from <code>state.json</code>.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Area</th><th>Status</th><th>Green / Total</th><th>Coverage</th></tr>
+        </thead>
+        <tbody id="area-rows"><!-- injected --></tbody>
+        <tfoot>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="font-weight:800">Total</td>
+            <td><span class="pill green">🟢 GREEN</span></td>
+            <td class="num">557 / 557</td>
+            <td><div class="bar"><span style="width:100%"></span></div></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <h2 class="section-title">Defects fixed this run</h2>
+    <p class="section-sub">Highlights from the corrections ledger — every fix committed, pushed and retested. 26 beads opened and closed across the run (0 left open).</p>
+
+    <ul class="fixlist">
+      <li><span class="tag">SCORE SCALE</span><b>/5 not /10:</b> eval score sheets hardcoded "/10" but the framework scale is 1–5. Fixed across 4 files (EvalRowSheetContent, AthleteStoryFeed, SelfEvalSheetContent, TeamSheetContent) — sheets now read "2.4 /5". <em>(bead shotclubhouse-93)</em></li>
+      <li><span class="tag">TERMINOLOGY</span><b>Player → Athlete sweep:</b> ~40+ user-facing strings across events, club, onboarding and eval surfaces changed from "Player(s)" to "Athlete(s)" — SHOT is multisport. Variable/component names left untouched. <em>(beads lp61, 4liv, qx6s)</em></li>
+      <li><span class="tag">BRAND</span><b>Pre-eval pending red → orange:</b> EventCard pre-eval-pending badge used <code>bg-red-600</code> (red is reserved for error states only) → <code>bg-orange-600</code>, matching the sibling coach-eval pending badge. <em>(bead 4liv)</em></li>
+      <li><span class="tag">REALTIME</span><b>Realtime query-key prefix fix:</b> realtime invalidated <code>channelAnnouncements(channelId)</code> but the feed key was <code>channelAnnouncements(channelId, filter)</code> → React Query prefix-match failed, feed never auto-refreshed. Fixed to a filter-agnostic 3-element prefix; live-verified insert auto-appears without reload. <em>(bead shotclubhouse-ssk6)</em></li>
+      <li><span class="tag">COPY</span><b>InviteCodeModal copy:</b> "switch to the player role" → "athlete role". <em>(bead shotclubhouse-qx6s)</em></li>
+      <li><span class="tag">WIDGET</span><b>Clubhouse widget wired:</b> orphaned <code>ClubhouseAnnouncementsWidget</code> mounted onto the Clubhouse Home "For You" tab; self-hides when empty. <em>(bead shotclubhouse-tw79)</em></li>
+      <li><span class="tag">ACCESS</span><b>Members-post honored:</b> backend RLS already honored <code>canMembersPost</code>; surfaced the ComposeFAB to members in postable channels (channel-scoped) + <code>?channel=</code> preselect. E2E-verified: insert allowed in members-post channel, RLS-denied in coach-only channel. <em>(bead shotclubhouse-lkju)</em></li>
+      <li><span class="tag">MODAL</span><b>ShadowNotificationModal invisible after remount:</b> portal host unmounted on close but <code>shadowRef</code> was never reset → remount built into a stale detached shadow root, making the modal invisible app-wide. Always render the portal host. <em>(bead shotclubhouse-uqco, HIGH)</em></li>
+      <li><span class="tag">CHANNELS</span><b>head_coach denied channel management:</b> <code>requireClubAdmin</code> allow-list (owner/admin/coach) mismatched the real <code>club_coaches</code> enum (head_coach/coach/director_of_coaching). Expanded the allow-list. <em>(bead PFQA-AN-02, HIGH)</em></li>
+      <li><span class="tag">SPOTLIGHT</span><b>Coach spotlight dead affordances:</b> "Feedback Owed See-all" footer (onSeeAll never passed), "Invite Athletes" button missing from team selector, cross-club announcements digest never populated — all wired up. <em>(beads PFQA-CS-01/02/04, HIGH/MED)</em></li>
+      <li><span class="tag">RPC</span><b>Roster name resilience:</b> <code>get_team_roster_public</code> now <code>COALESCE(display_name, full_name, 'Athlete')</code> so members without a display name no longer render as blank placeholders. <em>(bead shotclubhouse-3lx)</em></li>
+      <li><span class="tag">RAG/COLOUR</span><b>Calendar &amp; event-type colour canon:</b> Match = gold <code>#F7B613</code>, Training = teal <code>#1ABC9C</code>, Assessment = purple <code>#6B00DB</code>; slate-blue surfaces and off-brand blue controls remapped to SHOT tokens across the perform tree. <em>(beads xha, tza, wbj, i007, tj7b)</em></li>
+    </ul>
+
+    <div class="callout" style="margin-top:24px">
+      Full ledger of every correction (with scope, root-cause, verification and reversibility) lived alongside the live run as <code>CORRECTIONS.md</code>. This page is a frozen, self-contained snapshot — all data is inlined, no runtime fetch required.
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Perform Verify · Run 2026-06-09 · perform-dev</span>
+    <a href="../../index.html">← Back to run archive</a>
+  </div>
+</footer>
+
+<script>
+// Authoritative per-area data, inlined from state.json (.areas[]).
+const AREAS = [
+  { icon:"🧭", name:"Shell & Navigation",        green:25, total:25 },
+  { icon:"🔑", name:"Onboarding & Registration",  green:42, total:42 },
+  { icon:"🏛️", name:"Club Management",            green:67, total:67 },
+  { icon:"👥", name:"Teams & Roster",             green:33, total:33 },
+  { icon:"🎯", name:"Coach Spotlight",            green:34, total:34 },
+  { icon:"📅", name:"Events Lifecycle",           green:35, total:35 },
+  { icon:"📊", name:"Evaluations",                green:37, total:37 },
+  { icon:"📈", name:"Coach History & Analytics",  green:26, total:26 },
+  { icon:"🏃", name:"Athlete Surface",            green:41, total:41 },
+  { icon:"👪", name:"Parent Surface",             green:63, total:63 },
+  { icon:"🗂️", name:"Quick-View Sheets",          green:52, total:52 },
+  { icon:"📢", name:"Announcements",              green:70, total:70 },
+  { icon:"🎨", name:"UI Chrome & Gotchas",        green:32, total:32 }
+];
+const tbody = document.getElementById("area-rows");
+tbody.innerHTML = AREAS.map(a => {
+  const pct = Math.round((a.green / a.total) * 100);
+  return `<tr>
+    <td><span class="areaicon">${a.icon}</span>${a.name}</td>
+    <td><span class="pill green">🟢 GREEN</span></td>
+    <td class="num">${a.green} / ${a.total}</td>
+    <td><div class="bar"><span style="width:${pct}%"></span></div></td>
+  </tr>`;
+}).join("");
+</script>
+
+</body>
+</html>
