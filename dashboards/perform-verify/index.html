@@ -44,14 +44,14 @@
             <td><span class="pill green">🟢 ALL GREEN</span></td>
             <td class="num">557 / 557</td>
             <td class="num">0</td>
-            <td><a href="runs/2026-06-09/index.html">View snapshot →</a></td>
+            <td><a href="runs/2026-06-09/index.html">Live dashboard →</a> · <a href="runs/2026-06-09/summary.html">summary</a></td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout" style="margin-top:24px">
-      <b>Future runs append here.</b> To add a new run snapshot: create <code>runs/&lt;YYYY-MM-DD&gt;/index.html</code> (self-contained, inlined data), then add a row to this table linking to it. See the repo <a href="https://github.com/SHOTClubhouse/shotclubhouse_dashboards#readme">README</a>.
+      <b>Future runs append here.</b> Each run folder holds the <b>exact</b> live observability dashboard (<code>index.html</code> + frozen <code>state.json</code>, the same board published to here.now during the run) plus a static <code>summary.html</code>. To add a run: copy the dashboard <code>index.html</code> from <code>.agents/templates/perform-observability/</code> + that run's <code>state.json</code> into <code>runs/&lt;YYYY-MM-DD&gt;/</code>, then add a row here. See the repo <a href="https://github.com/SHOTClubhouse/shotclubhouse_dashboards#readme">README</a>.
     </div>
   </section>
 </div>
