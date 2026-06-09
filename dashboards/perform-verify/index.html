@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perform Verify — Run Archive</title>
+<link rel="stylesheet" href="../../assets/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span class="name">SHOT <span>Clubhouse</span></span></div>
+    <div class="crumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Dashboards</a><span class="sep">/</span><span class="here">Perform Verify</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Run Archive</div>
+    <h1>Perform Verify <span class="accent">— Run Archive</span></h1>
+    <p class="lede">Each row is a complete exploratory test run of the Perform surface. Click a run to open its full snapshot. New runs append here.</p>
+  </section>
+
+  <section class="section">
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date / Time (UTC)</th>
+            <th>Environment</th>
+            <th>Branch</th>
+            <th>Result</th>
+            <th>Green</th>
+            <th>Open beads</th>
+            <th>Snapshot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-06-09 08:26</td>
+            <td><code>perform-dev</code> (amkqtcxniaikulvfashn)</td>
+            <td><code>f/perform-test-run-2</code></td>
+            <td><span class="pill green">🟢 ALL GREEN</span></td>
+            <td class="num">557 / 557</td>
+            <td class="num">0</td>
+            <td><a href="runs/2026-06-09/index.html">View snapshot →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout" style="margin-top:24px">
+      <b>Future runs append here.</b> To add a new run snapshot: create <code>runs/&lt;YYYY-MM-DD&gt;/index.html</code> (self-contained, inlined data), then add a row to this table linking to it. See the repo <a href="https://github.com/SHOTClubhouse/shotclubhouse_dashboards#readme">README</a>.
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Perform Verify — run archive</span>
+    <a href="../index.html">← Back to dashboards</a>
+  </div>
+</footer>
+
+</body>
+</html>
