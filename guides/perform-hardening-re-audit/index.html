@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Perform Validation Hardening — Re-Audit 2026-06-10 — SHOT Clubhouse</title>
+<link rel="stylesheet" href="../../assets/style.css" />
+<style>
+  .prose { padding: 8px 0 16px; }
+  .prose h2 { font-size: 1.4rem; font-weight: 800; margin: 38px 0 10px; color: var(--text); }
+  .prose p { color: var(--text-muted); margin: 0 0 14px; }
+  .prose strong { color: var(--text); font-weight: 700; }
+  .prose ul, .prose ol { color: var(--text-muted); margin: 0 0 16px; padding-left: 22px; }
+  .prose li { margin: 6px 0; }
+  .prose ul ul, .prose ol ul { margin: 6px 0; }
+  .prose table {
+    width: 100%; border-collapse: collapse; font-size: .9rem;
+    margin: 10px 0 26px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .prose thead th {
+    text-align: left; padding: 12px 15px; font-size: .72rem; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--text-dim); background: var(--surface);
+    border-bottom: 1px solid var(--border); white-space: nowrap;
+  }
+  .prose tbody td { padding: 12px 15px; border-bottom: 1px solid var(--border-soft); color: var(--text); vertical-align: top; }
+  .prose tbody tr:last-child td { border-bottom: none; }
+  .prose tbody tr:hover td { background: var(--surface-hover); }
+  .prose pre {
+    background: var(--surface-elevated); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 16px 18px; overflow-x: auto;
+    font-size: .82rem; line-height: 1.6; margin: 0 0 18px;
+  }
+  .prose pre code { background: none; padding: 0; color: #d8d8d8; }
+  .prose pre .co { color: var(--text-dim); }
+  .prose pre .va, .prose pre .at { color: var(--teal); }
+  .prose pre .ex { color: #b07cff; }
+  .prose pre .op, .prose pre .st { color: var(--gold); }
+  .prose pre a { color: inherit; text-decoration: none; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span><span class="name">SHOT <span>Clubhouse</span></span></div>
+    <div class="crumbs"><a href="../../index.html">Home</a><span class="sep">/</span><a href="../index.html">Guides</a><span class="sep">/</span><span class="here">Perform Hardening Re-Audit</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Validation Re-Audit</div>
+    <h1>Perform autonomous-validation hardening <span class="accent">— before/after re-audit</span></h1>
+    <p class="lede">A forensic before/after re-audit proving all four validation dimensions improved at least one grade — computed by a fixed, versioned tool, not opinion.</p>
+    <div class="meta-grid" style="margin-top:18px">
+      <span><b>Date</b> 2026-06-10</span>
+      <span><b>Branch</b> <code>feat/perform-redesign</code></span>
+      <span><b>Target</b> perform-dev (<code>amkqtcxniaikulvfashn</code>)</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="callout" style="margin-bottom:26px">
+      <b>Companion run snapshot:</b> <a href="../../dashboards/perform-verify/runs/2026-06-10-hardened/index.html">open the live observability dashboard for this run →</a>
+    </div>
+    <div class="prose">
+<h2 id="why">Why</h2>
+<p>The 2026-06-09 autonomous run reported "557/557 features GREEN". A
+forensic critique found the claim inflated: 8% screenshot evidence,
+<strong>86% of greens timestamped &lt;2s apart</strong> (batch-marked),
+the fixer grading its own fixes, oracles derived from the code under
+test (circular), and a one-shot 20.7h run with no repeatable artifact.
+Graded: depth <strong>C-</strong>, evidence <strong>D</strong>, oracle
+<strong>C</strong>, repeatability <strong>D</strong>.</p>
+<p>This effort hardened the system and <strong>proves the grades
+improved</strong> via a before/after forensic re-audit computed by a
+fixed, versioned tool (<code>forensics.py</code>) — not opinion.</p>
+<h2 id="result--all-four-dimensions-improved-1-grade">Result — all four
+dimensions improved ≥1 grade</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th style="text-align: right;">Before (2026-06-09)</th>
+<th style="text-align: left;">After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verification depth</td>
+<td style="text-align: right;">C-</td>
+<td style="text-align: left;"><strong>B</strong></td>
+</tr>
+<tr class="even">
+<td>Evidence</td>
+<td style="text-align: right;">D</td>
+<td style="text-align: left;"><strong>A-</strong></td>
+</tr>
+<tr class="odd">
+<td>Oracle quality</td>
+<td style="text-align: right;">C</td>
+<td style="text-align: left;"><strong>B</strong></td>
+</tr>
+<tr class="even">
+<td>Repeatability</td>
+<td style="text-align: right;">D</td>
+<td style="text-align: left;"><strong>B</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th style="text-align: right;">Baseline</th>
+<th style="text-align: left;">After</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Evidence coverage of greens</td>
+<td style="text-align: right;">8.1% (45/557 screenshots, no gate)</td>
+<td style="text-align: left;"><strong>100%</strong> (282/282 fully
+evidenced)</td>
+</tr>
+<tr class="even">
+<td>Batch-stamp (&lt;2s gaps)</td>
+<td style="text-align: right;">86.0%</td>
+<td style="text-align: left;"><strong>0.0%</strong></td>
+</tr>
+<tr class="odd">
+<td>DB assertions on greens</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;"><strong>58</strong></td>
+</tr>
+<tr class="even">
+<td>Design-derived oracles</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;"><strong>298</strong></td>
+</tr>
+<tr class="odd">
+<td>Deterministic specs</td>
+<td style="text-align: right;">13 (red-route-b only)</td>
+<td style="text-align: left;"><strong>241</strong></td>
+</tr>
+<tr class="even">
+<td>Verifier ≠ fixer on fixes</td>
+<td style="text-align: right;">n/a (self-graded)</td>
+<td style="text-align: left;"><strong>3/3</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Evidence-gate validator exit <strong>0</strong> (all greens
+evidenced); forensics exit <strong>0</strong> (all dimensions improved).
+The gate self-policed: a first attempt that marked 5 UI-only write-paths
+green was <strong>rejected</strong>, forcing an honest
+<code>partial</code> downgrade.</p>
+<h2 id="what-was-built-phases-14">What was built (Phases 1–4)</h2>
+<ol type="1">
+<li><strong>Evidence gate</strong> — <code>validate-state.py</code>: a
+green requires <code>screenshot|domAssert</code>
+<ul>
+<li><code>oracleId</code> + <code>observed</code>; write-paths
+additionally require <code>dbAssert</code>; a fixed feature requires
+<code>verifiedBy ≠ fixedBy</code>. <code>push.sh</code> refuses
+violating publishes.</li>
+</ul></li>
+<li><strong>Oracle rebuild</strong> — 298 oracles re-derived from
+<code>DESIGN.md</code> / journey-map (provenance <code>design</code>),
+breaking the code-circularity of the baseline.</li>
+<li><strong>DB assertion helpers</strong> —
+<code>playwright/tests/perform-v2/helpers/dbAssert.ts</code>:
+service-role read-backs on perform-dev (hard-guarded against
+staging/prod).</li>
+<li><strong>Deterministic suite</strong> —
+<code>playwright/tests/perform-v2/</code> (<code>LANE=perform-v2</code>,
+serial, mobile viewport): <strong>241 specs across 13 areas</strong>,
+every write-path spec asserting UI <strong>and</strong> a DB read-back,
+red-route-b folded by reference. Runs green in <strong>~9min</strong>
+(≤15min budget) — invocable via
+<code>/perform-verify depth:'suite'</code>.</li>
+</ol>
+<h2 id="real-production-bugs-the-hardened-suite-caught">Real production
+bugs the hardened suite caught</h2>
+<p>The DB read-back assertions found defects UI-only testing
+structurally cannot:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Bug</th>
+<th>Why UI-only missed it</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>update_last_accessed_team</code> RPC referenced nonexistent
+<code>team_members.is_active</code> → team-switch never persisted
+<code>last_accessed_team</code></td>
+<td>localStorage masks it within a session</td>
+<td>migration <code>20260610130000</code> (status='active')</td>
+</tr>
+<tr class="even">
+<td><code>useToggleReaction</code> stripped <code>announcementId</code>
+→ resolver threw, no row written</td>
+<td>optimistic UI shows the reaction</td>
+<td>client payload fix (<code>src/lib/graphql/hooks.ts</code>)</td>
+</tr>
+<tr class="odd">
+<td>Coach eval slider claimed "Auto-saved" but nothing persisted until
+Submit</td>
+<td>toast fires regardless</td>
+<td>honest copy ("Saved when you submit")</td>
+</tr>
+</tbody>
+</table>
+<p>Plus dead-import removal (<code>RoleSelectorDropdown</code>) and an
+a11y fix (QuickViewSheet <code>aria-labelledby</code> pointed at a
+non-existent node).</p>
+<p>Equally important — <strong>four cases where the test's own oracle
+was wrong, not the app</strong> (announcement-settings POST match,
+evals-outstanding RPC scope, notification mute table, hostedBy
+display-string), each caught by reproducing the mutation server-side
+before touching code. That two-way discipline is the gap the baseline
+had.</p>
+<h2 id="honest-coverage-status-gate-2">Honest coverage status (Gate
+2)</h2>
+<ul>
+<li>Green ≤15min ✓ · <code>depth:'suite'</code> invocable ✓ ·
+red-route-b folded ✓</li>
+<li><strong>Write-paths: 58/122 green-with-DB-assert, 5 partial
+(UI-only), 59 pending.</strong> Of the 59 pending, 15 are
+onboarding/registration/COPPA flows owned by the red-route-b lane
+(folded, not re-implemented); ~44 are perform-native (club-management,
+Announcements, events, teams) — enumerated with design oracles
+<ul>
+<li>dbAssert recipes, ready for incremental spec addition. The suite is
+a <strong>growing</strong> suite by design; full 122/122 write-path
+coverage is its next milestone.</li>
+</ul></li>
+</ul>
+<h2 id="reproduce">Reproduce</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># deterministic suite (the gate):</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">CI</span><span class="op">=</span>true <span class="va">LANE</span><span class="op">=</span>perform-v2 <span class="ex">npx</span> playwright test <span class="at">--project</span><span class="op">=</span>perform-v2 <span class="at">--reporter</span><span class="op">=</span>line</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or: /perform-verify depth:&#39;suite&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># before/after forensics:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> .agents/scratch/perfqa-hardening-run/build-after-state.py results.json after-state.json</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> .agents/templates/perform-observability/validate-state.py after-state.json   <span class="co"># exit 0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> .agents/scratch/perfqa-hardening-run/forensics.py after-state.json <span class="at">--specs</span> 241  <span class="co"># exit 0</span></span></code></pre></div>
+<p>Forensics baseline is pinned in <code>forensics.py</code>; pointing
+it at the 2026-06-09 state reproduces the D/D/C/C- floor (regression
+fixture).</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>SHOT Clubhouse — guides</span>
+    <a href="../index.html">← Back to guides</a>
+  </div>
+</footer>
+
+</body>
+</html>
