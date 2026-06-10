@@ -3,7 +3,7 @@
  "run_id": "perfqa-hardening-after",
  "updated_at": "",
  "phase": "after: deterministic perform-v2 suite (run #14 green)",
- "overall_status": "pending",
+ "overall_status": "green",
  "current": {
   "area": "",
   "feature": "",
